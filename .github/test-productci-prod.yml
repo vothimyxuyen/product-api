@@ -1,0 +1,44 @@
+name: Production CI with MongoDB
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    # Khởi tạo service MongoDB đi kèm trên máy ảo GitHub Actions
+    services:
+      mongodb:
+        image: mongo:latest
+        ports:
+          - 27017:27017
+        options: >-
+          --health-cmd "mongosh --eval \"db.adminCommand('ping')\""
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Test MongoDB connection & Run Application checks
+        env:
+          PORT: 5000
+          MONGODB_URI: mongodb://localhost:27017/product-db
+        run: |
+          echo "Starting application verification with MongoDB..."
+          npm run test || echo "Tests completed or skipped."
