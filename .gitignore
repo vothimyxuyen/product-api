@@ -10,7 +10,10 @@ yarn-error.log*
 # Thư mục kết quả kiểm thử / coverage
 coverage/
 .nyc_output/
-test/
 
 .DS_Store
 .vscode/
+
+# Keep automated tests in version control.
+!test/
+!test/**/*.js

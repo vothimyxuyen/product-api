@@ -1,20 +1,17 @@
-require('dotenv').config();
-
-const mongoose = require('mongoose');
 const app = require('./app');
 const { getConfig } = require('./config');
 
-const { port, mongoUri } = getConfig();
+const { port } = getConfig();
 
 async function start() {
-  await mongoose.connect(mongoUri);
+  await prisma.$connect();
   const server = app.listen(port, '0.0.0.0', () => {
     console.log(`Product API listening on port ${port}`);
   });
 
   const shutdown = async () => {
     server.close(async () => {
-      await mongoose.disconnect();
+      await prisma.$disconnect();
       process.exit(0);
     });
   };
@@ -22,6 +19,8 @@ async function start() {
   process.on('SIGINT', shutdown);
   process.on('SIGTERM', shutdown);
 }
+
+const prisma = require('./prisma');
 
 start().catch((error) => {
   console.error('Failed to start Product API:', error);
