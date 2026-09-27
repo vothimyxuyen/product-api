@@ -1,4 +1,7 @@
+
 .env
+.env.example
+.env.*
 # Thư mục chứa các thư viện Node.js 
 node_modules/
 
@@ -14,3 +17,5 @@ test/
 
 .DS_Store
 .vscode/
+
+README.md
