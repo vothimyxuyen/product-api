@@ -3,8 +3,6 @@ services:
     image: mongo:7
     container_name: nammongodb
     restart: unless-stopped
-    ports:
-      - "127.0.0.1:${MONGO_HOST_PORT:-27017}:27017"
     volumes:
       - product_mongo_data:/data/db
     healthcheck:
@@ -15,8 +13,7 @@ services:
       start_period: 10s
 
   api:
-    build: .
-    image: product-api:local
+    image: ${DOCKERHUB_USERNAME:?Set DOCKERHUB_USERNAME}/${DOCKERHUB_REPOSITORY:-product-api}:${IMAGE_TAG:-latest}
     restart: unless-stopped
     environment:
       PORT: 3000

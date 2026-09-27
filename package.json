@@ -1,31 +1,25 @@
 {
   "name": "product-api",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "private": true,
+  "description": "RESTful CRUD API for products using Express and MongoDB",
+  "main": "src/server.js",
   "scripts": {
-    "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "test": "npm run test:unit",
+    "test:unit": "node --test test/unit/*.test.js",
+    "test:integration": "node --test test/integration/*.test.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/vothimyxuyen/product-api.git"
+  "engines": {
+    "node": ">=20"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "bugs": {
-    "url": "https://github.com/vothimyxuyen/product-api/issues"
-  },
-  "homepage": "https://github.com/vothimyxuyen/product-api#readme",
   "dependencies": {
-    "cors": "^2.8.6",
-    "dotenv": "^18.0.4",
-    "express": "^5.2.1",
-    "mongoose": "^9.10.2"
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mongoose": "^8.9.5"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "supertest": "^7.0.0"
   }
 }

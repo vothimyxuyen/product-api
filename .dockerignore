@@ -1,5 +1,9 @@
 node_modules
-npm-debug.log
-.env
+npm-debug.log*
 .git
-.github
+.env
+.env.*
+!.env.example
+coverage
+test
+README.md
