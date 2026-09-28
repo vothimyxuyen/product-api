@@ -1,4 +1,7 @@
+
 .env
+.env.example
+.env.*
 # Thư mục chứa các thư viện Node.js 
 node_modules/
 
@@ -14,6 +17,10 @@ coverage/
 .DS_Store
 .vscode/
 
+<<<<<<< HEAD
 # Keep automated tests in version control.
 !test/
 !test/**/*.js
+=======
+README.md
+>>>>>>> b1ad7838b9c39a4516e6046e069725b6c7093bc6
