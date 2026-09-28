@@ -5,15 +5,15 @@
   "description": "MVP ecommerce REST API using Express, Prisma, and PostgreSQL",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js",
-    "dev": "node --watch src/server.js",
-    "test": "npm run test:unit",
-    "test:unit": "node --test test/unit/*.test.js",
-    "test:integration": "node --test test/integration/*.test.js",
-    "db:migrate": "prisma migrate deploy",
-    "db:dev": "prisma migrate dev",
-    "db:seed": "prisma db seed"
-  },
+  "start": "node src/server.js",
+  "dev": "node --watch src/server.js",
+  "test": "npm run test:unit && npm run test:integration",
+  "test:unit": "node --test test/unit/*.test.js",
+  "test:integration": "node --test test/integration/*.test.js",
+  "db:migrate": "prisma migrate deploy",
+  "db:dev": "prisma migrate dev",
+  "db:seed": "prisma db seed"
+},
   "prisma": {
     "seed": "node prisma/seed.js"
   },

@@ -21,7 +21,7 @@ services:
     environment:
       PORT: 3000
       DATABASE_URL: postgresql://${POSTGRES_USER:-postgres}:${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}@postgres:5432/${POSTGRES_DB:-ecommerce}?schema=public
-      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      JWT_SECRET: supersecretkeythatisatleast32characterslong123456
       JWT_EXPIRES_IN: ${JWT_EXPIRES_IN:-1h}
     ports:
       - "3000:3000"
