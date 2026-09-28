@@ -16,7 +16,7 @@ async function main() {
   await prisma.membership.upsert({
     where: { mname: 'Basic' },
     update: {},
-    create: { mname: 'Basic', score: 0 }
+    create: { mname: 'Basic', score: 10 }
   });
 }
 

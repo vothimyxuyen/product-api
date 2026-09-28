@@ -18,7 +18,7 @@ model Role {
 model Membership {
   membershipId Int    @id @default(autoincrement()) @map("mid")
   mname        String @unique @db.VarChar(50)
-  score        Int    @default(0)
+  score        Int    @default(10)
   users        User[]
 
   @@map("Membership")
