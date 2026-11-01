@@ -6,6 +6,14 @@ const productRoutes = require('./routes/productRoutes');
 
 const app = express();
 
+app.use((req, res, next) => {
+  const startedAt = Date.now();
+  res.on('finish', () => {
+    console.log(`${req.method} ${req.path} ${res.statusCode} ${Date.now() - startedAt}ms`);
+  });
+  next();
+});
+
 app.use(express.json());
 
 app.get('/health', (_req, res) => {

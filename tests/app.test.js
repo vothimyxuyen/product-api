@@ -13,3 +13,18 @@ test('health check reports the database as disconnected before startup', async (
     database: 'disconnected'
   });
 });
+
+test('requests are written to the application log', async () => {
+  const originalLog = console.log;
+  const logged = [];
+  console.log = (message) => logged.push(message);
+
+  try {
+    await request(app).get('/health');
+  } finally {
+    console.log = originalLog;
+  }
+
+  assert.equal(logged.length, 1);
+  assert.match(logged[0], /^GET \/health 503 \d+ms$/);
+});

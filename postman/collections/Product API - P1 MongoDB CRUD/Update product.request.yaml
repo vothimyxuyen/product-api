@@ -1,0 +1,13 @@
+$kind: http-request
+url: "{{baseUrl}}/api/products/{{productId}}"
+method: PUT
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"pid":"{{productId}}","pname":"Updated Postman notebook","price":5,"quantity":6}'
+scripts:
+  - type: afterResponse
+    code: pm.test('Product updated', function () { pm.response.to.have.status(200); });
+    language: text/javascript
+order: 4000

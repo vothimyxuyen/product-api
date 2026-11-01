@@ -1,0 +1,5 @@
+$kind: collection
+description: Chay lan luot health, create, read, update, list va delete product.
+variables:
+  baseUrl: http://localhost:3001
+  productId: ""

@@ -1,0 +1,16 @@
+$kind: http-request
+url: "{{baseUrl}}/api/products"
+method: POST
+headers:
+  Content-Type: application/json
+body:
+  type: text
+  content: '{"pid":"postman-{{$guid}}","pname":"Postman notebook","price":4.5,"quantity":8}'
+scripts:
+  - type: afterResponse
+    code: |-
+      pm.test('Product created', function () { pm.response.to.have.status(201); });
+      const product = pm.response.json();
+      pm.collectionVariables.set('productId', product.pid);
+    language: text/javascript
+order: 2000
